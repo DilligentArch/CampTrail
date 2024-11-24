@@ -1,0 +1,268 @@
+[
+  {
+    "id": 1,
+    "adventureTitle": "Serene Lakeside Camping",
+    "image": "https://i.ibb.co.com/k4xTgc7/sareen.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "A peaceful lakeside retreat offering guided hikes, campfire bonding, and stargazing.",
+    "adventureCost": 150,
+    "bookingAvailability": true,
+    "location": "Lake District, Bangladesh",
+    "duration": "2 Days",
+    "adventureLevel": "Beginner",
+    "includedItems": [
+      "Tent",
+      "Sleeping Bag",
+      "Meals",
+      "Hiking Gear"
+    ],
+    "ecoFriendlyFeatures": [
+      "Eco-friendly tents",
+      "Solar-powered lighting",
+      "Waste segregation"
+    ],
+    "maxGroupSize": 20,
+    "specialInstructions": [
+      "Bring a hat and sunscreen",
+      "Wear hiking shoes",
+      "Respect quiet hours"
+    ]
+  },
+  {
+    "id": 2,
+    "adventureTitle": "Mountain Escape Retreat",
+    "image": "https://i.ibb.co.com/fxC5P1Z/CTG-2.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "An adventure in the mountains with campfire nights, yoga, and mindfulness activities.",
+    "adventureCost": 180,
+    "bookingAvailability": true,
+    "location": "Chittagong Hill Tracts, Bangladesh",
+    "duration": "3 Days",
+    "adventureLevel": "Intermediate",
+    "includedItems": [
+      "Tent",
+      "Yoga Mat",
+      "Meals",
+      "Yoga Instructor",
+      "Campfire"
+    ],
+    "ecoFriendlyFeatures": [
+      "Zero waste camping",
+      "Locally sourced food",
+      "Biodegradable products"
+    ],
+    "maxGroupSize": 15,
+    "specialInstructions": [
+      "Yoga attire",
+      "Pack warm clothes for the evenings",
+      "Keep noise to a minimum at night"
+    ]
+  },
+  {
+    "id": 3,
+    "adventureTitle": "Jungle Safari Camping",
+    "image": "https://i.ibb.co.com/XXSXt5k/sunderban.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "A thrilling camping experience with a jungle safari and wildlife spotting.",
+    "adventureCost": 220,
+    "bookingAvailability": false,
+    "location": "Sundarbans, Bangladesh",
+    "duration": "4 Days",
+    "adventureLevel": "Advanced",
+    "includedItems": [
+      "Tent",
+      "Safari Guide",
+      "Meals",
+      "Binoculars",
+      "Wildlife Guidebook"
+    ],
+    "ecoFriendlyFeatures": [
+      "Support local conservation",
+      "Sustainable camping gear",
+      "Leave no trace"
+    ],
+    "maxGroupSize": 10,
+    "specialInstructions": [
+      "Strict adherence to safety guidelines",
+      "Follow the guide’s instructions",
+      "Carry insect repellent"
+    ]
+  },
+  {
+    "id": 4,
+    "adventureTitle": "Beachfront Glamping Retreat",
+    "image": "https://i.ibb.co.com/XXSXt5k/sunderban.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "Glamping on the beach with luxury tents, bonfires, and the sound of the ocean.",
+    "adventureCost": 300,
+    "bookingAvailability": true,
+    "location": "Cox's Bazar, Bangladesh",
+    "duration": "2 Days",
+    "adventureLevel": "Beginner",
+    "includedItems": [
+      "Luxury Tent",
+      "Comfortable Bedding",
+      "Meals",
+      "Bonfire Setup",
+      "Beach Games"
+    ],
+    "ecoFriendlyFeatures": [
+      "Solar-powered tents",
+      "Water conservation practices",
+      "Organic toiletries"
+    ],
+    "maxGroupSize": 10,
+    "specialInstructions": [
+      "Swimwear",
+      "Light beachwear",
+      "Respect the local wildlife"
+    ]
+  },
+  {
+    "id": 5,
+    "adventureTitle": "Eco-Forest Camp",
+    "image": "https://i.ibb.co.com/9HR9hPD/raj.webp",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "Immerse yourself in the natural beauty of a secluded forest while learning sustainable camping practices.",
+    "adventureCost": 160,
+    "bookingAvailability": true,
+    "location": "Rajshahi, Bangladesh",
+    "duration": "3 Days",
+    "adventureLevel": "Intermediate",
+    "includedItems": [
+      "Tent",
+      "Campfire Setup",
+      "Sustainable Cooking Materials",
+      "Forest Guide"
+    ],
+    "ecoFriendlyFeatures": [
+      "Zero waste camping",
+      "Locally sourced food",
+      "Tree planting activities"
+    ],
+    "maxGroupSize": 12,
+    "specialInstructions": [
+      "Pack eco-friendly toiletries",
+      "Wear comfortable hiking shoes",
+      "Be prepared for occasional rain"
+    ]
+  },
+  {
+    "id": 6,
+    "adventureTitle": "Bandarban Hills Camping Retreat",
+    "image": "https://i.ibb.co.com/Y8LYbbL/band.webp",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "A thrilling camping retreat in the picturesque hills of Bandarban, offering scenic views, trekking, and cultural immersion.",
+    "adventureCost": 150,
+    "bookingAvailability": true,
+    "location": "Bandarban, Bangladesh",
+    "duration": "3 Days",
+    "adventureLevel": "Intermediate",
+    "includedItems": [
+      "Tent",
+      "Meals",
+      "Trekking Guide",
+      "Cultural Visit",
+      "Campfire"
+    ],
+    "ecoFriendlyFeatures": [
+      "Solar-powered campsite",
+      "Waste disposal initiative",
+      "Eco-friendly materials"
+    ],
+    "maxGroupSize": 10,
+    "specialInstructions": [
+      "Bring sturdy footwear",
+      "Prepare for rain",
+      "Respect local customs"
+    ]
+  },
+  {
+    "id": 7,
+    "adventureTitle": "River Camp Getaway",
+    "image": "https://i.ibb.co.com/Thg9gTZ/syl.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "Relax beside a serene river, enjoy fishing, and experience nature with guided kayaking tours.",
+    "adventureCost": 130,
+    "bookingAvailability": false,
+    "location": "Sylhet, Bangladesh",
+    "duration": "1 Day",
+    "adventureLevel": "Beginner",
+    "includedItems": [
+      "Kayak",
+      "Fishing Gear",
+      "Meals",
+      "Guide"
+    ],
+    "ecoFriendlyFeatures": [
+      "Plastic-free zone",
+      "Waterway conservation",
+      "Sustainable fishing practices"
+    ],
+    "maxGroupSize": 20,
+    "specialInstructions": [
+      "Wear life jackets",
+      "Bring waterproof clothing",
+      "Respect local wildlife"
+    ]
+  },
+  {
+    "id": 8,
+    "adventureTitle": "Hilltop Yoga Retreat",
+    "image": "https://i.ibb.co.com/ZcGRY6D/yoga.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "A blend of yoga and nature camping at the hilltop, offering peaceful surroundings and guided yoga sessions.",
+    "adventureCost": 220,
+    "bookingAvailability": true,
+    "location": "Moulvibazar, Bangladesh",
+    "duration": "3 Days",
+    "adventureLevel": "Beginner",
+    "includedItems": [
+      "Yoga Mat",
+      "Tent",
+      "Meals",
+      "Yoga Instructor",
+      "Guided Meditation"
+    ],
+    "ecoFriendlyFeatures": [
+      "Sustainable yoga mats",
+      "Organic food",
+      "Minimal waste"
+    ],
+    "maxGroupSize": 10,
+    "specialInstructions": [
+      "Bring comfortable yoga attire",
+      "Pack light",
+      "Keep noise to a minimum"
+    ]
+  },
+  {
+    "id": 9,
+    "adventureTitle": "Rainforest Explorer",
+    "image": "https://i.ibb.co.com/p10ywVq/syl.jpg",
+    "categoryName": "Camping Retreats",
+    "shortDescription": "Explore the lush greenery of the rainforest and connect with nature like never before.",
+    "adventureCost": 250,
+    "bookingAvailability": true,
+    "location": "Lawachara National Park, Bangladesh",
+    "duration": "3 Days",
+    "adventureLevel": "Intermediate",
+    "includedItems": [
+      "Tent",
+      "Meals",
+      "Rain Gear",
+      "Guide"
+    ],
+    "ecoFriendlyFeatures": [
+      "Compostable waste management",
+      "Local community support",
+      "Reusable utensils"
+    ],
+    "maxGroupSize": 12,
+    "specialInstructions": [
+      "Bring waterproof gear",
+      "Use insect repellent",
+      "Respect wildlife boundaries"
+    ]
+  }
+]
