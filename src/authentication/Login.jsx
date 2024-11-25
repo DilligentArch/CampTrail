@@ -20,6 +20,7 @@ const Login = () => {
               Email Address
             </label>
             <input
+             
               type="email"
               id="email"
               name="email"
@@ -33,6 +34,7 @@ const Login = () => {
               Password
             </label>
             <input
+
               type="password"
               id="password"
               name="password"
