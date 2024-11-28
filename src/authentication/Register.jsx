@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { createNewUser, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
 
   const [error, setError] = useState({}); // Initialize error as an object
 
@@ -28,47 +29,33 @@ const Register = () => {
 
     // Validate Name
     if (name.length < 5) {
-      validationErrors.name = "Name should be more than 5 characters.";
+      setError({ ...error, name: "name should be more then 5 character" });
     }
 
     // Validate Password
     if (!validatePassword(password)) {
-      validationErrors.password =
-        "Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.";
+      setError({ ...error, password: "Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long" });
     }
 
-    // If there are validation errors, set them and stop execution
-    if (Object.keys(validationErrors).length > 0) {
-      setError(validationErrors);
-      return;
-    }
-
-    // Clear errors if validation passes
-    setError({});
+    
 
     // Create a new user with Firebase
     createNewUser(email, password)
-      .then((result) => {
-        const user = result.user;
-
-        // Update user profile with name and photo
-        updateProfile(user, {
-          displayName: name,
-          photoURL: photo,
+    .then((result) => {
+      const user = result.user;
+      setUser(user);
+      updateUserProfile({ displayName: name, photoURL: photo })
+        .then(() => {
+          navigate("/");
         })
-          .then(() => {
-            setUser(user); // Update the context with the new user
-            console.log("User registered successfully:", user);
-          })
-          .catch((updateError) => {
-            setError({ register: "Failed to update user profile." });
-            console.error("Profile update error:", updateError);
-          });
-      })
-      .catch((registerError) => {
-        setError({ register: "Failed to register. Please try again." });
-        console.error("Registration error:", registerError);
-      });
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      
+    });
   };
 
   return (
