@@ -16,7 +16,7 @@ const Home = () => {
             </header>
             <section className="mb-12"> {/* Add margin-bottom to space out the slider */}
                 <SliderSection />
-                {/* <Swiper></Swiper> */}
+                <Swiper></Swiper>
             </section>
          <main>
             <CardsSection></CardsSection>
