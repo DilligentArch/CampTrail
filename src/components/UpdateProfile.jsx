@@ -76,6 +76,7 @@ const UpdateProfile = () => {
               onChange={(e) => setPhotoURL(e.target.value)}
               className="input input-bordered w-full mt-1"
               placeholder="Enter the URL for your profile photo"
+              required
             />
           </div>
 
