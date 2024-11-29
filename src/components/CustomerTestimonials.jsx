@@ -30,7 +30,7 @@ const CustomerTestimonials = () => {
   ];
 
   return (
-    <div className="my-12 px-6 max-w-screen-2xl mx-auto">
+    <div className="my-12 px-6 max-w-screen-2xl mx-auto  ">
       <h2 className="text-3xl font-bold text-center mb-8">
         What Our Adventurers Say
       </h2>

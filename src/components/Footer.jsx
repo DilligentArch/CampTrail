@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6 mt-8">
+    <footer className="bg-gray-800 text-white py-6 mt-8  max-w-screen-2xl mx-auto">
       <div className="container mx-auto px-6 text-center">
         {/* Social Media Icons */}
         <div className="flex justify-center space-x-8 mb-4">

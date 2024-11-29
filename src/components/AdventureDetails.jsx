@@ -5,23 +5,19 @@ import "aos/dist/aos.css";
 import { FaMapMarkerAlt, FaClock, FaUsers, FaMoneyBillWave } from "react-icons/fa";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
+import toast, { Toaster } from "react-hot-toast";
 
 const AdventureDetails = () => {
   const data = useLoaderData();
   const { id } = useParams();
   const adventure = data.find((camp) => camp.id === parseInt(id));
 
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
- 
   useEffect(() => {
     AOS.init({ duration: 1200, offset: 100 });
   }, []);
-
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -34,17 +30,17 @@ const AdventureDetails = () => {
     const isWithinConsultationHours = getCurrentTime();
 
     if (isWithinConsultationHours) {
-     
       window.open("https://meet.google.com/", "_blank");
+      toast.success("You are now in a consultation session!");
     } else {
-   
       setIsModalOpen(true);
+      
     }
   };
 
   const handleBookNow = () => {
+    toast.success("Booking confirmed! You’ve successfully booked your adventure.");
     setIsButtonDisabled(true);
-   
   };
 
   if (!adventure) {
@@ -71,12 +67,11 @@ const AdventureDetails = () => {
 
   return (
     <div>
-          <ToastContainer />
-      <Navbar></Navbar>
+      <Toaster />
+      <Navbar />
       <main>
-        <div className="bg-gray-50 py-16 px-6 lg:px-12">
+        <div className="bg-gray-50 py-16 px-6 lg:px-12  max-w-screen-2xl mx-auto">
           <section className="max-w-screen-xl mx-auto">
-  
             <div className="flex flex-col lg:flex-row items-center lg:gap-16" data-aos="fade-up">
               <img
                 src={image}
@@ -98,13 +93,8 @@ const AdventureDetails = () => {
               </div>
             </div>
 
-        
             <div className="mt-16">
-             
-              <section
-                data-aos="fade-left"
-                className="mb-12 text-center flex flex-col items-center"
-              >
+              <section data-aos="fade-left" className="mb-12 text-center flex flex-col items-center">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                   <FaUsers className="inline-block mr-2" />
                   Adventure Level
@@ -112,11 +102,7 @@ const AdventureDetails = () => {
                 <p className="text-lg text-gray-600">{adventureLevel}</p>
               </section>
 
-              
-              <section
-                data-aos="fade-right"
-                className="mb-12 text-center flex flex-col items-center"
-              >
+              <section data-aos="fade-right" className="mb-12 text-center flex flex-col items-center">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                   <FaMapMarkerAlt className="inline-block mr-2" />
                   What's Included
@@ -128,10 +114,7 @@ const AdventureDetails = () => {
                 </ul>
               </section>
 
-              <section
-                data-aos="fade-up"
-                className="mb-12 text-center flex flex-col items-center"
-              >
+              <section data-aos="fade-up" className="mb-12 text-center flex flex-col items-center">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                   <FaMapMarkerAlt className="inline-block mr-2" />
                   Eco-friendly Features
@@ -143,11 +126,7 @@ const AdventureDetails = () => {
                 </ul>
               </section>
 
-            
-              <section
-                data-aos="fade-left"
-                className="mb-12 text-center flex flex-col items-center"
-              >
+              <section data-aos="fade-left" className="mb-12 text-center flex flex-col items-center">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                   <FaClock className="inline-block mr-2" />
                   Special Instructions
@@ -160,7 +139,6 @@ const AdventureDetails = () => {
               </section>
             </div>
 
-          
             <div className="flex justify-center mt-12">
               <button
                 className="btn btn-primary px-8 py-3 text-white rounded-full hover:bg-green-800 transition-all"
@@ -170,36 +148,40 @@ const AdventureDetails = () => {
               </button>
             </div>
 
-      
             <div className="flex justify-center mt-12">
               <button
                 className="btn btn-primary px-8 py-3 text-white rounded-full hover:bg-green-800 transition-all"
                 onClick={handleBookNow}
                 disabled={isButtonDisabled}
               >
-                {isButtonDisabled ? 'Booked' : 'Book Now'}
+                {isButtonDisabled ? "Booked" : "Book Now"}
               </button>
             </div>
 
-            {/* Testimonials Section */}
             <section className="mt-16 text-center" data-aos="fade-up">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">What Our Guests Say</h2>
               <div className="flex flex-wrap justify-center gap-12">
                 {/* Testimonial 1 */}
                 <div className="w-80 p-6 bg-white rounded-lg shadow-md text-gray-800">
-                  <p className="text-lg mb-4">"An unforgettable experience! The adventure was perfectly organized, and the views were stunning. Highly recommended!"</p>
+                  <p className="text-lg mb-4">
+                    "An unforgettable experience! The adventure was perfectly organized, and the views were stunning. Highly recommended!"
+                  </p>
                   <p className="font-semibold">John Doe</p>
                   <p className="text-sm text-gray-600">Adventure Enthusiast</p>
                 </div>
                 {/* Testimonial 2 */}
                 <div className="w-80 p-6 bg-white rounded-lg shadow-md text-gray-800">
-                  <p className="text-lg mb-4">"I loved every moment of the adventure. It was a perfect mix of relaxation and excitement. Will definitely come back!"</p>
+                  <p className="text-lg mb-4">
+                    "I loved every moment of the adventure. It was a perfect mix of relaxation and excitement. Will definitely come back!"
+                  </p>
                   <p className="font-semibold">Jane Smith</p>
                   <p className="text-sm text-gray-600">Nature Lover</p>
                 </div>
                 {/* Testimonial 3 */}
                 <div className="w-80 p-6 bg-white rounded-lg shadow-md text-gray-800">
-                  <p className="text-lg mb-4">"A unique experience surrounded by nature. I was able to disconnect and enjoy the peaceful environment. 10/10!"</p>
+                  <p className="text-lg mb-4">
+                    "A unique experience surrounded by nature. I was able to disconnect and enjoy the peaceful environment. 10/10!"
+                  </p>
                   <p className="font-semibold">Emily Brown</p>
                   <p className="text-sm text-gray-600">Explorer</p>
                 </div>
@@ -226,7 +208,7 @@ const AdventureDetails = () => {
           )}
         </div>
       </main>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

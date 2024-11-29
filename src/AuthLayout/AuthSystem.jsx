@@ -5,8 +5,8 @@ import Footer from "../components/Footer";
 
 const AuthSystem = () => {
     return (
-        <div className="font-poppins bg-[#F3F3F3]">
-          <header className="py-3 w-11/12 mx-auto">
+        <div className=" bg-[#F3F3F3]">
+          <header >
            <Navbar></Navbar>
           </header>
           <Outlet></Outlet>

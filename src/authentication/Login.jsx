@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { FaGoogle } from "react-icons/fa"; // Import Google icon
+import { FaGoogle } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
+  const emailRef = useRef();
   const { userLogin, setUser, handleSignInWithGoogle } = useContext(AuthContext);
-  const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,10 +20,15 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+
         const redirectPath = location.state?.from?.pathname || "/";
         navigate(redirectPath, { replace: true });
+
+        toast.success("You have logged in successfully!");
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        toast.error(err.message || "Failed to log in. Please try again.");
+      });
   };
 
   const loginWithGoogle = () => {
@@ -30,18 +36,32 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+
         const redirectPath = location.state?.from?.pathname || "/";
         navigate(redirectPath, { replace: true });
+
+        toast.success("You have logged in successfully");
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        toast.error(err.message || "Failed to log in with Google. Please try again.");
+      });
+  };
+
+  const handleForgetPassword = () => {
+    const email = emailRef.current.value;
+
+    if (!email) {
+      toast.error("Please provide a valid email address");
+    } else {
+      navigate("/auth/reset-password", { state: { email } });
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100  max-w-screen-2xl mx-auto">
+      <Toaster />
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
-        <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
-          Login
-        </h2>
+        <h2 className="text-2xl font-bold text-center text-green-700 mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -49,6 +69,7 @@ const Login = () => {
             </label>
             <input
               type="email"
+              ref={emailRef}
               id="email"
               name="email"
               className="input input-bordered w-full mt-1"
@@ -73,11 +94,10 @@ const Login = () => {
             Login
           </button>
         </form>
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         <div className="flex justify-between items-center mt-4 text-sm">
-          <Link to="/auth/reset-password" className="text-blue-500 hover:underline">
+          <button onClick={handleForgetPassword} className="text-blue-500 hover:underline">
             Forgot Password?
-          </Link>
+          </button>
           <Link to="/auth/register" className="text-blue-500 hover:underline">
             Register
           </Link>

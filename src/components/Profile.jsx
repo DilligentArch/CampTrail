@@ -7,7 +7,7 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center  max-w-screen-2xl mx-auto">
       {/* Welcome Message */}
       <h1 className="text-4xl font-bold text-green-700 mb-6 animate__animated animate__fadeInDown">
         Welcome, {user?.displayName || "Guest"}!

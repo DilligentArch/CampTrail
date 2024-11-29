@@ -12,7 +12,7 @@ const Card = ({ data }) => {
 
   return (
     <div
-      className="card card-compact bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300"
+      className="card card-compact bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300  max-w-screen-2xl mx-auto"
       data-aos="fade-up" 
     >
       <figure>

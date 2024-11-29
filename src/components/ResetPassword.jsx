@@ -1,38 +1,40 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const ResetPassword = () => {
   const { resetPassword } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
-
+  const location= useLocation();
+  const [email, setEmail] = useState(location.state?.email || "");
+   
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMessage("");
-    setError("");
+
+    // Reset any previous error or success messages
+    toast.dismiss();
 
     resetPassword(email)
       .then(() => {
-        setMessage("Password reset link has been sent to your email.");
+        toast.success("Password reset link has been sent to your email.");
+        setTimeout(() => {
+            window.open("https://mail.google.com", "_blank");
+        },1000);
       })
       .catch((err) => {
-        setError("Failed to send password reset link. Please try again.");
-        console.error(err);
+        toast.error("Failed to send password reset link. Please try again.");
+        // console.error(err);
       });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100  max-w-screen-2xl mx-auto">
+      <Toaster /> {/* This is the Toast container */}
       <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
         <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
           Reset Password
         </h2>
-
-        {/* Success/Error Messages */}
-        {message && <p className="text-green-600 text-center mb-4">{message}</p>}
-        {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email Input */}

@@ -1,24 +1,39 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import React, { useContext, useEffect } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
+  const location = useLocation();
   const { user, logOut } = useContext(AuthContext);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
+
+  // Dynamic titles based on the route
+  useEffect(() => {
+    const Titles = {
+      "/": "CampTrail | Home",
+      "/about": "CampTrail | About Us",
+      "/contact": "CampTrail | Contact Us",
+      "/profile": "CampTrail | Profile",
+      "/update-profile": "CampTrail | Update Profile",
+      "/auth/login": "CampTrail | Login",
+      "/auth/register": "CampTrail | Register",
+      "/auth/reset-password": "CampTrail | Reset Password",
+    };
+
+    document.title = Titles[location.pathname] || "CampTrail | Explore Adventures";
+  }, [location.pathname]);
 
   const handleLogout = () => {
     logOut();
-    navigate("/"); // Redirect to the home page after logout
-  };
-
-  const handleProfileRedirect = () => {
-    if (!user) {
-      navigate("/auth/login"); // Redirect to login if user is not logged in
-    }
+    toast.success("You have logged out successfully!");
+    navigate("/");
   };
 
   return (
-    <nav className="navbar bg-[#2F4F4F] text-white">
+    <nav className="navbar bg-[#2F4F4F] text-white max-w-screen-2xl mx-auto">
+      <Toaster />
+
       {/* Navbar Start */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -47,76 +62,120 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] w-52 rounded-box bg-base-100 p-2 shadow text-black"
           >
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-green-500 font-bold" : "text-black"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/about">About Us</Link>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "text-green-500 font-bold" : "text-black"
+                }
+              >
+                About Us
+              </NavLink>
             </li>
             <li>
-              <Link to="/contact">Contact Us</Link>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? "text-green-500 font-bold" : "text-black"
+                }
+              >
+                Contact Us
+              </NavLink>
             </li>
-            {user ? (
+            {user && (
               <>
                 <li>
-                  <Link to="/profile">View Profile</Link>
-                </li>
-                <li>
-                  <Link to="/update-profile">Update Profile</Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link to="/auth/login" onClick={handleProfileRedirect}>
+                  <NavLink
+                    to="/profile"
+                    className={({ isActive }) =>
+                      isActive ? "text-green-500 font-bold" : "text-black"
+                    }
+                  >
                     View Profile
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/auth/login" onClick={handleProfileRedirect}>
+                  <NavLink
+                    to="/update-profile"
+                    className={({ isActive }) =>
+                      isActive ? "text-green-500 font-bold" : "text-black"
+                    }
+                  >
                     Update Profile
-                  </Link>
+                  </NavLink>
                 </li>
               </>
             )}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <NavLink to="/" className="btn btn-ghost normal-case text-xl">
           CampTrail
-        </Link>
+        </NavLink>
       </div>
 
       {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-green-500 font-bold" : "text-white"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "text-green-500 font-bold" : "text-white"
+              }
+            >
+              About Us
+            </NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact Us</Link>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "text-green-500 font-bold" : "text-white"
+              }
+            >
+              Contact Us
+            </NavLink>
           </li>
-          {user ? (
+          {user && (
             <>
               <li>
-                <Link to="/profile">View Profile</Link>
-              </li>
-              <li>
-                <Link to="/update-profile">Update Profile</Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link to="/auth/login" onClick={handleProfileRedirect}>
+                <NavLink
+                  to="/profile"
+                  className={({ isActive }) =>
+                    isActive ? "text-green-500 font-bold" : "text-white"
+                  }
+                >
                   View Profile
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/auth/login" onClick={handleProfileRedirect}>
+                <NavLink
+                  to="/update-profile"
+                  className={({ isActive }) =>
+                    isActive ? "text-green-500 font-bold" : "text-white"
+                  }
+                >
                   Update Profile
-                </Link>
+                </NavLink>
               </li>
             </>
           )}
@@ -127,7 +186,6 @@ const Navbar = () => {
       <div className="navbar-end flex items-center space-x-4">
         {user ? (
           <>
-            {/* User Profile Photo */}
             <div className="relative group">
               <img
                 className="w-10 h-10 rounded-full cursor-pointer"
@@ -135,13 +193,10 @@ const Navbar = () => {
                 alt="User Avatar"
                 title={user.displayName || "User"}
               />
-              {/* Hover to show User Name */}
               <div className="absolute left-0 bottom-[-40px] w-max bg-gray-800 text-white text-sm py-1 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {user.displayName || "Guest"}
               </div>
             </div>
-
-            {/* Logout Button */}
             <button
               onClick={handleLogout}
               className="btn btn-sm btn-neutral rounded-none"
@@ -150,9 +205,14 @@ const Navbar = () => {
             </button>
           </>
         ) : (
-          <Link to="/auth/login" className="btn btn-sm btn-neutral rounded-none">
+          <NavLink
+            to="/auth/login"
+            className={({ isActive }) =>
+              isActive ? "text-green-500 font-bold" : "btn btn-sm btn-neutral"
+            }
+          >
             Login
-          </Link>
+          </NavLink>
         )}
       </div>
     </nav>

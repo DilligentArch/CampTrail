@@ -1,9 +1,10 @@
 import React from 'react';
 import Slider from './Slider';
+import Swiper from './Swiper';
 
 const SliderSection = () => {
     return (
-        <div className=''>
+        <div className=' max-w-screen-2xl mx-auto'>
              <div class="hero bg-base-200 py-10">
                     <div class="hero-content text-center">
                         <div class="max-w-md">
@@ -16,7 +17,7 @@ const SliderSection = () => {
                         </div>
                     </div>
                 </div>
-                <Slider></Slider>
+              <Swiper></Swiper>
             
         </div>
     );

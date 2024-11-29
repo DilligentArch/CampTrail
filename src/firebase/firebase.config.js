@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAgAhwlDRgCCi64lK_Pcrm5snSAeX4bBBw",
-  authDomain: "camptrail-5d8b4.firebaseapp.com",
-  projectId: "camptrail-5d8b4",
-  storageBucket: "camptrail-5d8b4.firebasestorage.app",
-  messagingSenderId: "700348423886",
-  appId: "1:700348423886:web:dd977ce35d9e523b873a9f"
+  apiKey: import.meta.env. VITE_apiKey,
+  authDomain: import.meta.env. VITE_authDomain,
+  projectId: import.meta.env. VITE_projectId,
+  storageBucket: import.meta.env. VITE_storageBucket,
+  messagingSenderId: import.meta.env. VITE_messagingSenderId,
+  appId: import.meta.env. VITE_appId,
 };
 
 // Initialize Firebase

@@ -6,8 +6,6 @@ export default () => {
     <Swiper
       spaceBetween={0} // Remove the gap between slides
       slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       <SwiperSlide><img className='w-full h-60 object-cover' src='/one.jpg' /></SwiperSlide>
       <SwiperSlide><img className='w-full h-60 object-cover' src='/three.jpg' /></SwiperSlide>

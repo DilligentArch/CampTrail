@@ -1,14 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";  // Importing React Hot Toast
 
 const UpdateProfile = () => {
   const { updateUserProfile, setUser } = useContext(AuthContext);
   const [name, setName] = useState(""); // Initially empty
   const [photoURL, setPhotoURL] = useState(""); // Initially empty
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -24,28 +22,28 @@ const UpdateProfile = () => {
           photoURL,
         }));
 
-        setSuccessMessage("Profile updated successfully!");
-        setErrorMessage("");
+        // Show success message
+        toast.success("Profile updated successfully!");
+
+        // Redirect to home page after success
         setTimeout(() => {
           navigate("/"); // Redirect to home page
         }, 2000); // Optional delay for showing success message
       })
       .catch((err) => {
-        setErrorMessage("Failed to update profile. Please try again.");
-        console.error(err);
+        // Show error message
+        toast.error("Failed to update profile. Please try again.");
+        // console.error(err);
       });
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center  max-w-screen-2xl mx-auto">
+      <Toaster /> {/* Toast notifications container */}
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
           Update Profile
         </h2>
-
-        {/* Success or Error Message */}
-        {successMessage && <p className="text-green-600 mb-4">{successMessage}</p>}
-        {errorMessage && <p className="text-red-600 mb-4">{errorMessage}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name Input */}

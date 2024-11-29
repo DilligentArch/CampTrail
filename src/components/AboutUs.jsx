@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100  max-w-screen-2xl mx-auto">
       {/* Hero Section */}
       <section className="bg-green-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
