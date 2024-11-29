@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { userLogin, setUser } = useContext(AuthContext);
+  const { userLogin, setUser, handleSignInWithGoogle } = useContext(AuthContext);
   const [error, setError] = useState(""); // Use a string for error messages
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +27,23 @@ const Login = () => {
       .catch((err) => {
         console.error("Login failed:", err);
         setError(err.message); // Set the error as a string
+      });
+  };
+
+  const loginWithGoogle = () => {
+    handleSignInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user); // Set the logged-in user in context
+        console.log("Google Login successful:", user);
+
+        // Redirect to the intended page or home
+        const redirectPath = location.state?.from?.pathname || "/";
+        navigate(redirectPath, { replace: true });
+      })
+      .catch((err) => {
+        console.error("Google Login failed:", err);
+        setError(err.message); // Set error message
       });
   };
 
@@ -79,7 +96,7 @@ const Login = () => {
           </Link>
         </div>
         <div className="divider my-6">OR</div>
-        <button className="btn btn-outline btn-accent w-full">
+        <button onClick={loginWithGoogle} className="btn btn-outline btn-accent w-full">
           Continue with Google
         </button>
       </div>
