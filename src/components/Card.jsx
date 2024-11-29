@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; 
+import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
   useEffect(() => {
     AOS.init({ duration: 1000, offset: 50 }); 
   }, []);
 
-  const { image, adventureTitle, shortDescription, adventureCost, bookingAvailability } = data;
+  const { image, adventureTitle, shortDescription, adventureCost, bookingAvailability,id } = data;
 
   return (
     <div
@@ -26,12 +27,12 @@ const Card = ({ data }) => {
         <p className="text-gray-600">{shortDescription}</p>
         <div className="flex justify-between items-center mt-4">
           <span className="text-lg font-bold text-green-700">${adventureCost}</span>
-          <button
+          <Link to={`/adventure-details/${id}`} 
             className={`btn ${bookingAvailability ? "btn-primary" : "btn-disabled"}`}
             disabled={!bookingAvailability}
           >
             {bookingAvailability ? "Book Now" : "Fully Booked"}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

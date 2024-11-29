@@ -1,9 +1,22 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom"; // Ensure correct import of Link
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  const handleLogout = () => {
+    logOut();
+    navigate("/"); // Redirect to the home page after logout
+  };
+
+  const handleProfileRedirect = () => {
+    if (!user) {
+      navigate("/auth/login"); // Redirect to login if user is not logged in
+    }
+  };
+
   return (
     <nav className="navbar bg-[#2F4F4F] text-white">
       {/* Navbar Start */}
@@ -36,15 +49,34 @@ const Navbar = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
-            {user && (
-              <li>
-                <Link to="/update-profile">Update Profile</Link>
-              </li>
-            )}
-            {user && (
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
+            <li>
+              <Link to="/about">About Us</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact Us</Link>
+            </li>
+            {user ? (
+              <>
+                <li>
+                  <Link to="/profile">View Profile</Link>
+                </li>
+                <li>
+                  <Link to="/update-profile">Update Profile</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/auth/login" onClick={handleProfileRedirect}>
+                    View Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/auth/login" onClick={handleProfileRedirect}>
+                    Update Profile
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </div>
@@ -59,15 +91,34 @@ const Navbar = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          {user && (
-            <li>
-              <Link to="/update-profile">Update Profile</Link>
-            </li>
-          )}
-          {user && (
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          {user ? (
+            <>
+              <li>
+                <Link to="/profile">View Profile</Link>
+              </li>
+              <li>
+                <Link to="/update-profile">Update Profile</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/auth/login" onClick={handleProfileRedirect}>
+                  View Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="/auth/login" onClick={handleProfileRedirect}>
+                  Update Profile
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
@@ -90,19 +141,13 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Logout Button with Hover Effect */}
-            <div className="relative group">
-              <button
-                onClick={logOut}
-                className="btn btn-sm btn-neutral rounded-none"
-              >
-                Logout
-              </button>
-              {/* Hover to show User Name */}
-              <div className="absolute left-0 bottom-[-40px] w-max bg-gray-800 text-white text-sm py-1 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {user.displayName || "Guest"}
-              </div>
-            </div>
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="btn btn-sm btn-neutral rounded-none"
+            >
+              Logout
+            </button>
           </>
         ) : (
           <Link to="/auth/login" className="btn btn-sm btn-neutral rounded-none">
