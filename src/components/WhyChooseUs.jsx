@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { FaLeaf, FaHiking, FaCampground } from "react-icons/fa";
 
 const WhyChooseUs = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const features = [
     {
       id: 1,
@@ -34,12 +40,15 @@ const WhyChooseUs = () => {
           <div
             key={feature.id}
             className="p-6 border rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
+            data-aos="fade-up"
           >
             <div className="flex justify-center mb-4">{feature.icon}</div>
             <h3 className="text-xl font-semibold text-center text-green-700">
               {feature.title}
             </h3>
-            <p className="text-gray-600 text-center mt-2">{feature.description}</p>
+            <p className="text-gray-600 text-center mt-2">
+              {feature.description}
+            </p>
           </div>
         ))}
       </div>
