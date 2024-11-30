@@ -13,7 +13,7 @@ export default () => {
       <SwiperSlide><img className='w-full h-60 object-cover' src='/new1.jpg' /></SwiperSlide>
       <SwiperSlide><img className='w-full h-60 object-cover' src='/new2.jpg' /></SwiperSlide>
       <SwiperSlide><img className='w-full h-60 object-cover' src='/new3.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/new4.jpg' /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/new4.jpeg' /></SwiperSlide>
       {/* Additional slides here */}
     </Swiper>
   );
