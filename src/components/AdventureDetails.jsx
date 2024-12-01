@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { FaMapMarkerAlt, FaClock, FaUsers, FaMoneyBillWave } from "react-icons/fa";
+import { FaMapMarkerAlt, FaClock, FaUsers } from "react-icons/fa";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import toast, { Toaster } from "react-hot-toast";
@@ -22,19 +22,16 @@ const AdventureDetails = () => {
   const getCurrentTime = () => {
     const now = new Date();
     const hours = now.getHours();
-    return hours >= 10 && hours < 20; // Between 10:00 AM - 8:00 PM
+    return hours >= 10 && hours < 20;
   };
 
-  // Open Google Meet or show modal based on time
   const handleTalkWithExpert = () => {
     const isWithinConsultationHours = getCurrentTime();
-
     if (isWithinConsultationHours) {
       window.open("https://meet.google.com/", "_blank");
       toast.success("You are now in a consultation session!");
     } else {
       setIsModalOpen(true);
-      
     }
   };
 
@@ -70,18 +67,19 @@ const AdventureDetails = () => {
       <Toaster />
       <Navbar />
       <main>
-        <div className="bg-gray-50 py-16 px-6 lg:px-12  max-w-screen-2xl mx-auto">
+        <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-12 max-w-screen-2xl mx-auto">
           <section className="max-w-screen-xl mx-auto">
-            <div className="flex flex-col lg:flex-row items-center lg:gap-16" data-aos="fade-up">
+            {/* Adventure Details */}
+            <div className="flex flex-col md:flex-row items-center md:gap-8" data-aos="fade-up">
               <img
                 src={image}
                 alt={adventureTitle}
-                className="w-full lg:w-1/2 h-96 object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300"
+                className="w-full md:w-1/2 h-72 md:h-96 object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300"
               />
-              <div className="lg:w-1/2 mt-8 lg:mt-0">
-                <h1 className="text-4xl font-extrabold text-gray-800 mb-4">{adventureTitle}</h1>
-                <p className="text-lg text-gray-600 mb-6">{shortDescription}</p>
-                <div>
+              <div className="md:w-1/2 mt-6 md:mt-0">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4">{adventureTitle}</h1>
+                <p className="text-sm md:text-lg text-gray-600 mb-6">{shortDescription}</p>
+                <div className="space-y-2">
                   <p className="text-gray-800 font-semibold">
                     Cost: <span className="text-green-600">${adventureCost}</span>
                   </p>
@@ -93,64 +91,47 @@ const AdventureDetails = () => {
               </div>
             </div>
 
-            <div className="mt-16">
-              <section data-aos="fade-left" className="mb-12 text-center flex flex-col items-center">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                  <FaUsers className="inline-block mr-2" />
-                  Adventure Level
-                </h2>
-                <p className="text-lg text-gray-600">{adventureLevel}</p>
-              </section>
+            {/* Sections */}
+            <div className="mt-12">
+              <Section title="Adventure Level" icon={<FaUsers />}>
+                {adventureLevel}
+              </Section>
 
-              <section data-aos="fade-right" className="mb-12 text-center flex flex-col items-center">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                  <FaMapMarkerAlt className="inline-block mr-2" />
-                  What's Included
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
+              <Section title="What's Included" icon={<FaMapMarkerAlt />}>
+                <ul className="list-none pl-4 space-y-1 text-gray-600">
                   {includedItems.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
-              </section>
+              </Section>
 
-              <section data-aos="fade-up" className="mb-12 text-center flex flex-col items-center">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                  <FaMapMarkerAlt className="inline-block mr-2" />
-                  Eco-friendly Features
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
+              <Section title="Eco-friendly Features" icon={<FaMapMarkerAlt />}>
+                <ul className="list-none pl-4 space-y-1 text-gray-600">
                   {ecoFriendlyFeatures.map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))}
                 </ul>
-              </section>
+              </Section>
 
-              <section data-aos="fade-left" className="mb-12 text-center flex flex-col items-center">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                  <FaClock className="inline-block mr-2" />
-                  Special Instructions
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
+              <Section title="Special Instructions" icon={<FaClock />}>
+                <ul className="list-none pl-4 space-y-1 text-gray-600">
                   {specialInstructions.map((instruction, index) => (
                     <li key={index}>{instruction}</li>
                   ))}
                 </ul>
-              </section>
+              </Section>
             </div>
 
-            <div className="flex justify-center mt-12">
+            {/* Buttons */}
+            <div className="flex flex-wrap justify-center gap-4 mt-12">
               <button
-                className="btn btn-primary px-8 py-3 text-white rounded-full hover:bg-green-800 transition-all"
+                className="btn btn-primary px-6 py-2 text-white rounded-full hover:bg-green-800 transition-all"
                 onClick={handleTalkWithExpert}
               >
                 Talk with Expert
               </button>
-            </div>
-
-            <div className="flex justify-center mt-12">
               <button
-                className="btn btn-primary px-8 py-3 text-white rounded-full hover:bg-green-800 transition-all"
+                className="btn btn-primary px-6 py-2 text-white rounded-full hover:bg-green-800 transition-all"
                 onClick={handleBookNow}
                 disabled={isButtonDisabled}
               >
@@ -158,59 +139,53 @@ const AdventureDetails = () => {
               </button>
             </div>
 
+            {/* Testimonials */}
             <section className="mt-16 text-center" data-aos="fade-up">
-              <h2 className="text-3xl font-bold text-gray-800 mb-6">What Our Guests Say</h2>
-              <div className="flex flex-wrap justify-center gap-12">
-                {/* Testimonial 1 */}
-                <div className="w-80 p-6 bg-white rounded-lg shadow-md text-gray-800">
-                  <p className="text-lg mb-4">
-                    "An unforgettable experience! The adventure was perfectly organized, and the views were stunning. Highly recommended!"
-                  </p>
-                  <p className="font-semibold">John Doe</p>
-                  <p className="text-sm text-gray-600">Adventure Enthusiast</p>
-                </div>
-                {/* Testimonial 2 */}
-                <div className="w-80 p-6 bg-white rounded-lg shadow-md text-gray-800">
-                  <p className="text-lg mb-4">
-                    "I loved every moment of the adventure. It was a perfect mix of relaxation and excitement. Will definitely come back!"
-                  </p>
-                  <p className="font-semibold">Jane Smith</p>
-                  <p className="text-sm text-gray-600">Nature Lover</p>
-                </div>
-                {/* Testimonial 3 */}
-                <div className="w-80 p-6 bg-white rounded-lg shadow-md text-gray-800">
-                  <p className="text-lg mb-4">
-                    "A unique experience surrounded by nature. I was able to disconnect and enjoy the peaceful environment. 10/10!"
-                  </p>
-                  <p className="font-semibold">Emily Brown</p>
-                  <p className="text-sm text-gray-600">Explorer</p>
-                </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">What Our Guests Say</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Testimonial
+                  text="An unforgettable experience! The adventure was perfectly organized, and the views were stunning. Highly recommended!"
+                  author="John Doe"
+                  role="Adventure Enthusiast"
+                />
+                <Testimonial
+                  text="I loved every moment of the adventure. It was a perfect mix of relaxation and excitement. Will definitely come back!"
+                  author="Jane Smith"
+                  role="Nature Lover"
+                />
+                <Testimonial
+                  text="A unique experience surrounded by nature. I was able to disconnect and enjoy the peaceful environment. 10/10!"
+                  author="Emily Brown"
+                  role="Explorer"
+                />
               </div>
             </section>
           </section>
-
-          {/* Modal for Consultation Time */}
-          {isModalOpen && (
-            <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-lg p-8 w-96">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Consultation Hours</h3>
-                <p className="text-gray-600 mb-4">
-                  Our experts are available for consultations between 10:00 AM and 8:00 PM. Please reach out during these hours.
-                </p>
-                <button
-                  className="btn btn-secondary px-8 py-3 text-white rounded-full hover:bg-red-800 transition-all"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </main>
       <Footer />
     </div>
   );
 };
+
+// Section Component
+const Section = ({ title, icon, children }) => (
+  <section className="mb-12 text-center" data-aos="fade-up">
+    <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4 flex items-center justify-center gap-2">
+      {icon}
+      {title}
+    </h2>
+    <div>{children}</div>
+  </section>
+);
+
+// Testimonial Component
+const Testimonial = ({ text, author, role }) => (
+  <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-gray-800">
+    <p className="text-sm md:text-lg mb-4">{`"${text}"`}</p>
+    <p className="font-semibold">{author}</p>
+    <p className="text-sm text-gray-600">{role}</p>
+  </div>
+);
 
 export default AdventureDetails;
