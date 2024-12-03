@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/autoplay'; // Import Swiper autoplay styles
+import { Autoplay } from 'swiper/modules'; // Import Swiper autoplay module
 
 export default () => {
   return (
@@ -18,14 +20,20 @@ export default () => {
           slidesPerView: 3, // Show 3 slides on desktop
         },
       }}
+      modules={[Autoplay]} // Include the autoplay module
+      autoplay={{
+        delay: 3000, // Delay between transitions (in ms)
+        disableOnInteraction: false, // Keep autoplay active on user interaction
+      }}
+      loop={true} // Enable infinite loop
     >
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/one.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/three.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/four.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/new1.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/new2.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/new3.jpg' /></SwiperSlide>
-      <SwiperSlide><img className='w-full h-60 object-cover' src='/new4.jpeg' /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/one.jpg' alt="Slide 1" /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/three.jpg' alt="Slide 2" /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/four.jpg' alt="Slide 3" /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/new1.jpg' alt="Slide 4" /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/new2.jpg' alt="Slide 5" /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/new3.jpg' alt="Slide 6" /></SwiperSlide>
+      <SwiperSlide><img className='w-full h-60 object-cover' src='/new4.jpeg' alt="Slide 7" /></SwiperSlide>
       {/* Additional slides here */}
     </Swiper>
   );
